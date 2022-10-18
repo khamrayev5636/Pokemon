@@ -1,0 +1,85 @@
+.body-js {
+    background-color: #48d1cc;
+}
+
+.hero__img {
+    max-width: 100%;
+    width: 100%;
+}
+
+.list-js {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.item-js{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    margin: 0 auto 50px;
+    background-color: #cfe2ff;
+    border: 1px solid #055160;
+}
+
+.title-js {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background-color: #cff4fc;
+    color:#055160;
+}
+
+.num-js {
+    position: absolute;
+    top: -8px;
+    right: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #dc3545;
+    color:#fff;
+    border-radius: 20px;
+}
+
+.img-js {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.text-js {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 18px;
+    background-color: #fbc9ff;
+    color: #664d03;
+    width: 100%;
+    margin: 0;
+}
+
+.time-js {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 55px;
+    right: -20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 40px;
+    height: 20px;
+    padding: 2px;
+    background-color: #ffc107;
+    border-radius: 20px;
+}
