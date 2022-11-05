@@ -1,54 +1,97 @@
-var list = document.querySelector(".list");
-var elBody = document.querySelector("body");
+const elList = document.querySelector(".list-js");
+const elBody = document.querySelector("body");
+const elTemplate = document.querySelector(".template-pok").content;
+const elFragment = document.createDocumentFragment();
 
-elBody.classList.add("body-js")
+// Form 
+
+const elForm = document.querySelector(".form");
+const elSearch = elForm.querySelector(".search-js");
+const elSelect = elForm.querySelector(".select-js");
+elBody.classList.add("body-js");
 
 
-for(var pokemon of pokemons){
+// DOMga chizish
 
-    list.classList.add("list-js");
+function renderPokimon(cartoon){
     
-    var newItem = document.createElement("li");
-    newItem.classList.add("item-js");
-
-    var newTitle = document.createElement("h3");
-    var newBlock = document.createElement("div");
-    newBlock.classList.add("title-js");
-
-    var newNum = document.createElement("span");
-    newNum.classList.add("num-js")
-
-    var newImg = document.createElement("img");
-    newImg.classList.add("img-js")
-
-    var newTime = document.createElement("time");
-    newTime.classList.add("time-js");
-
-    var newText = document.createElement("p");
-    newText.classList.add("text-js");
-
-    // Har bir elementga qiymat berish
-
-    newTitle.textContent = pokemon.name;
-    newNum.textContent = pokemon.num;
-    newImg.src = pokemon.img;
-    newImg.width = "100";
-    newImg.height = "100";
-    newImg.alt = pokemon.name;
-    newTime.textContent = pokemon.spawn_time;
-    newText.textContent = pokemon.candy;
-
-    // Har bir elementi li ni ichiga qushib chiqish
-
-    // newBlock.appendChild(newTitle)
-    newBlock.appendChild(newTitle);
-    newItem.appendChild(newBlock);
-    newItem.appendChild(newNum);
-    newItem.appendChild(newImg);
-    newItem.appendChild(newTime);
-    newItem.appendChild(newText);
+    elList.innerHTML = ""
+    
+    cartoon.forEach(item => {
+        
+        const elClone = elTemplate.cloneNode(true);
+        
+        elClone.querySelector(".title-js").textContent = item.name;
+        elClone.querySelector(".num-js").textContent = item.num;
+        elClone.querySelector(".img-js").src = item.img;
+        elClone.querySelector(".time-js").textContent = item.spawn_time;
+        elClone.querySelector(".text-js").textContent = item.weaknesses;
+        
+        elFragment.appendChild(elClone);
+    });
+    
+    elList.appendChild(elFragment);
+};
 
 
-    list.appendChild(newItem);
+// Form orqali search qilish
 
-}
+elForm.addEventListener("submit" , function(evt) {
+    evt.preventDefault();
+    
+    const elSearchValue = elSearch.value.trim();
+    const elSelectValue = elSelect.value;
+    
+    const elRegPokemon = new RegExp(elSearchValue , "gi");
+    
+    const elCartoonSearch = pokemons.filter(element => (element.name.match(elRegPokemon) && ( element.weaknesses.includes(elSelectValue) || elSelectValue === "All")));
+    
+    
+    if(elCartoonSearch.length > 0){
+        renderPokimon(elCartoonSearch)
+    }else {
+        alert("No such cartoon found!❌❌❌")
+    };
+    
+});
+
+
+// ElSelect orqali qidirish
+
+function renderSelect(pok){
+    
+    const selectArr = [];
+    
+    pok.forEach(list => {
+        
+        list.weaknesses.forEach(et => {
+            if(!selectArr.includes(et)){
+                selectArr.push(et);
+            };
+        });
+        
+    });
+
+    const selectFragment = document.createDocumentFragment();
+
+    selectArr.forEach(option => {
+
+        const elOption = document.createElement("option");
+
+        elOption.value = option;
+        elOption.textContent = option;
+
+        selectFragment.appendChild(elOption);
+    });
+
+    elSelect.appendChild(selectFragment);
+    
+};
+
+renderSelect(pokemons);
+renderPokimon(pokemons);
+
+
+
+
+
