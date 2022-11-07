@@ -118,7 +118,7 @@ elForm.addEventListener("submit" , function(evt) {
     
     
     if(elCartoonSearch.length > 0){
-        renderSort(elCartoonSearch``,elSelectSortValue)
+        renderSort(elCartoonSearch ,elSelectSortValue)
         renderPokimon(elCartoonSearch)
     }else {
         alert("No such cartoon found!❌❌❌")
