@@ -18,9 +18,11 @@
 }
 
 .item-js{
+    height: 420px;
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     width: 250px;
     margin: 0 auto 50px;
