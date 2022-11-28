@@ -24,7 +24,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: 300px;
     margin: 0 auto 50px;
     cursor: pointer;
     background-color: #cfe2ff;
@@ -42,6 +42,7 @@
     padding: 15px 0;
     background-color: #cff4fc;
     color:#055160;
+    text-transform: capitalize;
 }
 
 .num-js {

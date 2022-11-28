@@ -14,15 +14,25 @@ elBody.classList.add("body-js");
 
 // DOMga chizish
 
-function renderPokimon(cartoon){
+function renderPokimon(cartoon , regex = ""){
     
     elList.innerHTML = ""
+
+    console.dir(regex)
     
     cartoon.forEach(item => {
         
         const elClone = elTemplate.cloneNode(true);
-        
-        elClone.querySelector(".title-js").textContent = item.name;
+
+
+        if(regex.source != "(?:)" && regex){
+
+            elClone.querySelector(".title-js").innerHTML = item.name.replace(regex,`<mark class="bg-danger">${regex.source.toLowerCase()}</mark>`);
+        }else {
+
+            elClone.querySelector(".title-js").textContent = item.name;
+        }
+
         elClone.querySelector(".num-js").textContent = item.num;
         elClone.querySelector(".img-js").src = item.img;
         elClone.querySelector(".weight-js").textContent = item.weight;
@@ -118,8 +128,8 @@ elForm.addEventListener("submit" , function(evt) {
     
     
     if(elCartoonSearch.length > 0){
-        renderSort(elCartoonSearch ,elSelectSortValue)
-        renderPokimon(elCartoonSearch)
+        renderSort(elCartoonSearch , elSelectSortValue)
+        renderPokimon(elCartoonSearch , elRegPokemon )
     }else {
         alert("No such cartoon found!❌❌❌")
     };
